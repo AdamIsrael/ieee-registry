@@ -4,7 +4,6 @@ use std::io::Cursor;
 type BoxResult<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 
 use expanduser::expanduser;
-use reqwest;
 
 const MAX_AGE: u64 = 86400 * 30;
 
