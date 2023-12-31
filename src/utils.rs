@@ -10,18 +10,18 @@ const MAX_AGE: u64 = 86400 * 30;
 
 /// Download the file to a specific destination
 pub fn download(url: &str, destination: &str) -> BoxResult<()> {
-    // If the file exists and is less than MAX_AGE, don't download it again
-    if metadata(destination).is_ok() {
-        let age = age(destination)?;
+    let path = expanduser(destination)?;
+
+    // Short-circuit if the file is already downloaded and less than MAX_AGE old
+    if let Ok(age) = age(path.clone().into_os_string().to_str().unwrap()) {
         if age < MAX_AGE {
             return Ok(());
         }
     }
+
     // Download the file
     match reqwest::blocking::get(url) {
         Ok(response) => {
-            let path = expanduser(destination)?;
-
             // make sure the path exists
             create_dir_all(path.parent().unwrap())?;
 
@@ -66,7 +66,8 @@ mod tests {
                 let md = fs::metadata(tmp).unwrap();
                 assert_ne!(0, md.len());
             }
-            Err(_) => {
+            Err(e) => {
+                println!("Error: {}", e);
                 assert!(false);
             }
         }
