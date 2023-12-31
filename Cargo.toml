@@ -1,7 +1,18 @@
 [package]
 name = "ieee-registry"
+description = "A Rust crate to cache the IEEE public registries as csv. "
 version = "0.1.0"
 edition = "2021"
+homepage = "https://github.com/AdamIsrael/ieee-registry"
+documentation = "https://github.com/AdamIsrael/ieee-registry"
+repository = "https://github.com/AdamIsrael/ieee-registry"
+readme = "README.md"
+license-file = "LICENSE"
+keywords = ["ieee"]
+categories = ["caching", "command line utilities"]
+exclude = [
+    ".vscode/*",
+]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
