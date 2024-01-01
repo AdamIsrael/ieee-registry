@@ -7,6 +7,15 @@ use expanduser::expanduser;
 
 const MAX_AGE: u64 = 86400 * 30;
 
+/// Expand the static relative path to a full absolute path
+pub fn expand_path(path: &str) -> String {
+    expanduser::expanduser(path)
+    .unwrap()
+    .to_str()
+    .unwrap()
+    .to_string()
+}
+
 /// Download the file to a specific destination
 pub fn download(url: &str, destination: &str) -> BoxResult<()> {
     let path = expanduser(destination)?;

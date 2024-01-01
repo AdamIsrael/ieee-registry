@@ -1,7 +1,7 @@
 [package]
 name = "ieee-registry"
 description = "A Rust crate to cache the IEEE public registries as csv. "
-version = "0.1.1"
+version = "0.2.0"
 edition = "2021"
 homepage = "https://github.com/AdamIsrael/ieee-registry"
 documentation = "https://github.com/AdamIsrael/ieee-registry"

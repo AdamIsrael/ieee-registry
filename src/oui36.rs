@@ -6,8 +6,8 @@ const CACHE: &str = "~/.local/share/ieee/oui36.csv";
 type BoxResult<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 
 /// Cache the Mac Address Block Small (oui36)
-pub fn get_oui36_path() -> BoxResult<&'static str> {
+pub fn get_oui36_path() -> BoxResult<String> {
     utils::download(URL, CACHE)?;
 
-    Ok(CACHE)
+    Ok(utils::expand_path(CACHE))
 }
